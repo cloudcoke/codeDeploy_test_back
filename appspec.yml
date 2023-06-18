@@ -6,6 +6,11 @@ files:
   - source: package.json
     destination: /home/ubuntu/www/package.json
 
+permissions:
+  - object: /home/ubuntu/www/
+    pattern: '**'
+    owner: ubuntu
+
 hooks:
   ApplicationStop:
     - location: scripts/kill_process.sh
