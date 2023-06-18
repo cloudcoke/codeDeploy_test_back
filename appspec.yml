@@ -1,0 +1,19 @@
+version: 0.0
+os: linux
+files:
+  - source: dist
+    destination: /home/ubuntu/www/dist
+  - source: package.json
+    destination: /home/ubuntu/www/dist/package.json
+file_exists_behavior: OVERWRITE
+
+hooks:
+  ApplicationStop:
+    - location: scripts/kill_process.sh
+    - timeout: 60
+    - runas: ubuntu
+
+  AfterInstall:
+    - location: scripts/start_process.sh
+    - timeout: 180
+    - runas: ubuntu
